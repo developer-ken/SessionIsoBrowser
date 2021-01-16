@@ -48,6 +48,7 @@ namespace SessionIsoBrowser
             this.coName = new System.Windows.Forms.TextBox();
             this.打开插件目录ExtentionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.隐藏所有HideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContainerItemMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -97,6 +98,7 @@ namespace SessionIsoBrowser
             // 
             this.会话下的窗口WindowsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.显示所有ShowToolStripMenuItem,
+            this.隐藏所有HideToolStripMenuItem,
             this.关闭所有CloseToolStripMenuItem});
             this.会话下的窗口WindowsToolStripMenuItem.Name = "会话下的窗口WindowsToolStripMenuItem";
             this.会话下的窗口WindowsToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
@@ -105,14 +107,14 @@ namespace SessionIsoBrowser
             // 显示所有ShowToolStripMenuItem
             // 
             this.显示所有ShowToolStripMenuItem.Name = "显示所有ShowToolStripMenuItem";
-            this.显示所有ShowToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.显示所有ShowToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.显示所有ShowToolStripMenuItem.Text = "显示所有(&Show)";
             this.显示所有ShowToolStripMenuItem.Click += new System.EventHandler(this.显示所有ShowToolStripMenuItem_Click);
             // 
             // 关闭所有CloseToolStripMenuItem
             // 
             this.关闭所有CloseToolStripMenuItem.Name = "关闭所有CloseToolStripMenuItem";
-            this.关闭所有CloseToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.关闭所有CloseToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.关闭所有CloseToolStripMenuItem.Text = "关闭所有(&Close)";
             this.关闭所有CloseToolStripMenuItem.Click += new System.EventHandler(this.关闭所有CloseToolStripMenuItem_Click);
             // 
@@ -214,6 +216,13 @@ namespace SessionIsoBrowser
             this.textBox1.Text = "安全警示：脚本与Userscript(例如油猴加载的脚本)不完全相同，需要兼容层来运行。兼容层未实现安全模型，可能被恶意页面利用来提权。请仅使用可信的脚本、仅访问" +
     "可信的页面。";
             // 
+            // 隐藏所有HideToolStripMenuItem
+            // 
+            this.隐藏所有HideToolStripMenuItem.Name = "隐藏所有HideToolStripMenuItem";
+            this.隐藏所有HideToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.隐藏所有HideToolStripMenuItem.Text = "隐藏所有(&Hide)";
+            this.隐藏所有HideToolStripMenuItem.Click += new System.EventHandler(this.隐藏所有HideToolStripMenuItem_Click);
+            // 
             // SessionManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -254,6 +263,7 @@ namespace SessionIsoBrowser
         private System.Windows.Forms.ToolStripMenuItem 全局用户脚本UToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 脚本ScriptToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolStripMenuItem 隐藏所有HideToolStripMenuItem;
     }
 }
 

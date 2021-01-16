@@ -80,12 +80,30 @@ namespace SessionIsoBrowser
 
         private void 显示所有ShowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            foreach (BrowserWindow brw in openWindows)
+            {
+                if (brw.UUID == listOfContainer.SelectedItems[0].Name)
+                {
+                    brw.Show();
+                    brw.Focus();
+                }
+            }
         }
 
         private void 关闭所有CloseToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CloseAllWindow(listOfContainer.SelectedItems[0].Name);
+        }
 
+        private void CloseAllWindow(string UUID)
+        {
+            foreach (BrowserWindow brw in openWindows)
+            {
+                if (brw.UUID == UUID)
+                {
+                    brw.Close();
+                }
+            }
         }
 
         private void ContainerItemMenu_Opening(object sender, CancelEventArgs e)
@@ -120,6 +138,7 @@ namespace SessionIsoBrowser
 
         private void 删除会话DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             Data.SessionInfo sinfo = Data.VDB.ReadSessionInfo(
                 Data.VDB.GetSessionSavePath(
                     listOfContainer.SelectedItems[0].Name
@@ -127,6 +146,17 @@ namespace SessionIsoBrowser
                 );
             Data.VDB.DeleteSession(sinfo);
             RefreshList();
+        }
+
+        private void 隐藏所有HideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (BrowserWindow brw in openWindows)
+            {
+                if (brw.UUID == listOfContainer.SelectedItems[0].Name)
+                {
+                    brw.Hide();
+                }
+            }
         }
     }
 }
