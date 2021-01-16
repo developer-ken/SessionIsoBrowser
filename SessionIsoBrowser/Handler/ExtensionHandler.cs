@@ -1,10 +1,4 @@
 ﻿using CefSharp;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SessionIsoBrowser.GMApi
 {
@@ -47,12 +41,12 @@ namespace SessionIsoBrowser.GMApi
 
         public void OnExtensionLoadFailed(CefErrorCode errorCode)
         {
-            
+
         }
 
         public void OnExtensionUnloaded(IExtension extension)
         {
-            
+
         }
     }
 }

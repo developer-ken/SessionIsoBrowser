@@ -29,6 +29,7 @@ namespace SessionIsoBrowser
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExtentionManager));
             this.noticePad = new System.Windows.Forms.Label();
             this.userScriptBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -60,6 +61,7 @@ namespace SessionIsoBrowser
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.userScriptBox);
             this.Controls.Add(this.noticePad);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ExtentionManager";
             this.Text = "Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserScriptManager_FormClosing);

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SessionIsoBrowser
@@ -18,7 +14,7 @@ namespace SessionIsoBrowser
             this.session = session;
             InitializeComponent();
             Text = "脚本管理器 - " + Properties.Settings.Default.Title;
-            noticePad.Text = "* 正在编辑 "+session.SessionName+" 的脚本设置    关闭窗口自动保存";
+            noticePad.Text = "* 正在编辑 " + session.SessionName + " 的脚本设置    关闭窗口自动保存";
             StringBuilder sb = new StringBuilder();
             if (session.UUID == "GLOBAL") session.Extentions = Data.VDB.GlobalExtentions.ToArray();
             foreach (string url in session.Extentions)

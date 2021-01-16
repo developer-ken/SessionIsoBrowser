@@ -3,11 +3,6 @@ using CefSharp.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SessionIsoBrowser
@@ -55,7 +50,8 @@ namespace SessionIsoBrowser
                 SessionName = coName.Text,
                 UUID = UUID,
                 SessionPath = Data.VDB.GetSessionSavePath(UUID),
-                Url = Data.VDB.defaultUrl
+                Url = Data.VDB.defaultUrl,
+                Extentions = new string[0]
             };
             MessageBox.Show("[" + ssInfo.SessionName + "]\n" +
                 "UUID:" + ssInfo.UUID + "\n" +
@@ -120,6 +116,17 @@ namespace SessionIsoBrowser
         private void SessionManager_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void 删除会话DeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Data.SessionInfo sinfo = Data.VDB.ReadSessionInfo(
+                Data.VDB.GetSessionSavePath(
+                    listOfContainer.SelectedItems[0].Name
+                    )
+                );
+            Data.VDB.DeleteSession(sinfo);
+            RefreshList();
         }
     }
 }

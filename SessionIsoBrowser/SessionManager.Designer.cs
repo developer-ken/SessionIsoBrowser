@@ -30,6 +30,7 @@ namespace SessionIsoBrowser
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SessionManager));
             this.listOfContainer = new System.Windows.Forms.ListView();
             this.ContainerItemMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.sToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +72,7 @@ namespace SessionIsoBrowser
             this.sToolStripMenuItem,
             this.全局用户脚本UToolStripMenuItem});
             this.ContainerItemMenu.Name = "ContainerItemMenu";
-            this.ContainerItemMenu.Size = new System.Drawing.Size(197, 52);
+            this.ContainerItemMenu.Size = new System.Drawing.Size(211, 80);
             this.ContainerItemMenu.Opening += new System.ComponentModel.CancelEventHandler(this.ContainerItemMenu_Opening);
             // 
             // sToolStripMenuItem
@@ -82,7 +83,7 @@ namespace SessionIsoBrowser
             this.删除会话DeleteToolStripMenuItem,
             this.脚本ScriptToolStripMenuItem});
             this.sToolStripMenuItem.Name = "sToolStripMenuItem";
-            this.sToolStripMenuItem.Size = new System.Drawing.Size(196, 24);
+            this.sToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.sToolStripMenuItem.Text = ">>>>>>>>>(&S)";
             // 
             // 新窗口OToolStripMenuItem
@@ -120,6 +121,7 @@ namespace SessionIsoBrowser
             this.删除会话DeleteToolStripMenuItem.Name = "删除会话DeleteToolStripMenuItem";
             this.删除会话DeleteToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
             this.删除会话DeleteToolStripMenuItem.Text = "删除会话(&Delete)";
+            this.删除会话DeleteToolStripMenuItem.Click += new System.EventHandler(this.删除会话DeleteToolStripMenuItem_Click);
             // 
             // 脚本ScriptToolStripMenuItem
             // 
@@ -131,7 +133,7 @@ namespace SessionIsoBrowser
             // 全局用户脚本UToolStripMenuItem
             // 
             this.全局用户脚本UToolStripMenuItem.Name = "全局用户脚本UToolStripMenuItem";
-            this.全局用户脚本UToolStripMenuItem.Size = new System.Drawing.Size(196, 24);
+            this.全局用户脚本UToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.全局用户脚本UToolStripMenuItem.Text = "全局脚本(&U)";
             this.全局用户脚本UToolStripMenuItem.Click += new System.EventHandler(this.全局用户脚本UToolStripMenuItem_Click);
             // 
@@ -220,6 +222,7 @@ namespace SessionIsoBrowser
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SessionManager";
             this.Text = "多会话隔离浏览器 - 会话管理";
             this.Load += new System.EventHandler(this.SessionManager_Load);

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
 
 namespace SessionIsoBrowser.Data
 {
@@ -80,6 +79,12 @@ namespace SessionIsoBrowser.Data
             userscripts.AddRange(GlobalExtentions);
             userscripts.AddRange(localExtentions);
             return userscripts;
+        }
+
+        public static void DeleteSession(SessionInfo session)
+        {
+            Directory.Delete(session.SessionPath, true);
+            Properties.Settings.Default.SessionList.Remove(session.UUID);
         }
 
         public static List<SessionInfo> ListSessions()

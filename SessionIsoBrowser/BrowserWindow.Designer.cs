@@ -29,6 +29,7 @@ namespace SessionIsoBrowser
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserWindow));
             this.url = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.browserLayoutPanel = new System.Windows.Forms.Panel();
@@ -86,6 +87,7 @@ namespace SessionIsoBrowser
             this.Controls.Add(this.browserLayoutPanel);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.url);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BrowserWindow";
             this.Text = "BrowserWindow";
             this.Load += new System.EventHandler(this.BrowserWindow_Load);
