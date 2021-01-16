@@ -3,6 +3,7 @@ using CefSharp.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SessionIsoBrowser
@@ -51,7 +52,7 @@ namespace SessionIsoBrowser
                 UUID = UUID,
                 SessionPath = Data.VDB.GetSessionSavePath(UUID),
                 Url = Data.VDB.defaultUrl,
-                Extentions = new string[0]
+                Userscripts = new string[0]
             };
             MessageBox.Show("[" + ssInfo.SessionName + "]\n" +
                 "UUID:" + ssInfo.UUID + "\n" +
@@ -120,7 +121,7 @@ namespace SessionIsoBrowser
 
         private void 全局用户脚本UToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ExtentionManager(new Data.SessionInfo() { UUID = "GLOBAL", SessionName = "全局" }).ShowDialog();
+            new ScriptManager(new Data.SessionInfo() { UUID = "GLOBAL", SessionName = "全局" }).ShowDialog();
         }
 
         private void 用户脚本UserScriptToolStripMenuItem_Click(object sender, EventArgs e)
@@ -130,7 +131,7 @@ namespace SessionIsoBrowser
                     listOfContainer.SelectedItems[0].Name
                     )
                 );
-            new ExtentionManager(sinfo).ShowDialog();
+            new ScriptManager(sinfo).ShowDialog();
         }
 
         private void 打开插件目录ExtentionsToolStripMenuItem_Click(object sender, EventArgs e)

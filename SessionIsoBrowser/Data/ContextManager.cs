@@ -23,7 +23,7 @@ namespace SessionIsoBrowser.Data
                 settings.PersistSessionCookies = true;
                 RequestContext reqc = new RequestContext(settings);
                 reqc.LoadExtensionsFromDirectory(VDB.savepath + @"\extentions", extHandler);
-                Cef.RefreshWebPlugins();
+                //Cef.RefreshWebPlugins();
                 Context c = new Context() { context = reqc, GM = new GM_API_Handler() };
                 contList.Add(UUID, c);
                 return c;

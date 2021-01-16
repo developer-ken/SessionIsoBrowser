@@ -13,7 +13,7 @@ namespace SessionIsoBrowser.Data
         public string SessionPath;
         public string SessionName;
         public string Url;
-        public string[] Extentions;
+        public string[] Userscripts;
     }
     class VirtualDataBase
     {
@@ -51,17 +51,17 @@ namespace SessionIsoBrowser.Data
             }
         }
 
-        public static List<string> GlobalExtentions
+        public static List<string> GlobalUserScripts
         {
             get
             {
-                if (Properties.Settings.Default.Extentions == null) Properties.Settings.Default.Extentions = new System.Collections.Specialized.StringCollection();
-                return Properties.Settings.Default.Extentions.Cast<string>().ToList();
+                if (Properties.Settings.Default.UserScripts == null) Properties.Settings.Default.UserScripts = new System.Collections.Specialized.StringCollection();
+                return Properties.Settings.Default.UserScripts.Cast<string>().ToList();
             }
             set
             {
-                Properties.Settings.Default.Extentions.Clear();
-                Properties.Settings.Default.Extentions.AddRange(value.ToArray());
+                Properties.Settings.Default.UserScripts.Clear();
+                Properties.Settings.Default.UserScripts.AddRange(value.ToArray());
                 Properties.Settings.Default.Save();
             }
         }
@@ -73,10 +73,10 @@ namespace SessionIsoBrowser.Data
 
         public static List<string> GetSessionRelatedExtentions(string UUID)
         {
-            string[] localExtentions = ReadSessionInfo(GetSessionSavePath(UUID)).Extentions;
+            string[] localExtentions = ReadSessionInfo(GetSessionSavePath(UUID)).Userscripts;
             //将两个集合合并作为结果
             List<string> userscripts = new List<string>();
-            userscripts.AddRange(GlobalExtentions);
+            userscripts.AddRange(GlobalUserScripts);
             userscripts.AddRange(localExtentions);
             return userscripts;
         }
@@ -115,7 +115,7 @@ namespace SessionIsoBrowser.Data
                 UUID = data[1],
                 SessionName = data[2],
                 Url = data[3],
-                Extentions = data.Skip<string>(4).ToArray()
+                Userscripts = data.Skip<string>(4).ToArray()
             };
             return si;
         }
@@ -124,7 +124,7 @@ namespace SessionIsoBrowser.Data
         {
             Directory.CreateDirectory(sessionInfo.SessionPath);
             StringBuilder sb = new StringBuilder();
-            foreach (string line in sessionInfo.Extentions)
+            foreach (string line in sessionInfo.Userscripts)
             {
                 sb.Append(line + "\n");
             }

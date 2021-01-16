@@ -1,7 +1,9 @@
 ﻿using CefSharp;
 using CefSharp.WinForms;
+using SessionIsoBrowser.Data;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,8 +14,7 @@ namespace SessionIsoBrowser
         public string UUID;
         ChromiumWebBrowser webBro;
         Data.SessionInfo session;
-        List<string> scripts = new List<string>();
-        bool scriptsLoaded = false;
+        List<UserScript> scripts = new List<UserScript>();
 
         public BrowserWindow(Data.SessionInfo session)
         {
@@ -35,21 +36,36 @@ namespace SessionIsoBrowser
             {
                 List<string> Uscripts = Data.VDB.GetSessionRelatedExtentions(session.UUID);
                 scripts.Clear();
-                scriptsLoaded = false;
                 int cnt = 0;
-                foreach (string url in Uscripts)
+                foreach (string urlstr in Uscripts)
                 {
                     try
                     {
-                        var code = Data.ScriptFetchEngine.GetScriptContent(url);
-                        if (code.Length < 1) continue;
-                        scripts.Add(code);
+                        UserScript script = null;
+                        Uri url = new Uri(urlstr);
+                        if (url.Scheme == "localscript")
+                        {
+                            script = new LocalUserScriptHandler(session).GetLocalUserScript(url.Host);
+                        }
+                        else if (url.Scheme == "globalscript")
+                        {
+                            script = LocalUserScriptHandler.GetUserScript(url.Host);
+                        }
+                        else
+                        {
+                            var code = Data.ScriptFetchEngine.GetScriptContent(urlstr, session);
+                            script = new UserScript(code);
+                        }
+                        if (script == null ||
+                        script.conf.Name == null ||
+                        script.conf.Name == "")
+                            continue;
+                        scripts.Add(script);
                         cnt++;
                         this.Text = session.SessionName + "(Script*" + cnt + ") - " + Properties.Settings.Default.Title;
                     }
                     catch { }
                 }
-                scriptsLoaded = true;
                 webBro.FrameLoadEnd += onFrameLoadEnd;
             });
         }
@@ -61,15 +77,22 @@ namespace SessionIsoBrowser
                 "GM_setClipboard = GM.setClipboard;" +
                 "GM_xmlhttpRequest = GM.xmlhttpRequest;" +
                 "unsafeWindow = window;");
-            foreach (string code in scripts)
+            foreach (UserScript script in scripts)
             {
-                args.Frame.ExecuteJavaScriptAsync(code);
+                if (script.IsAvailableInPage(args.Url))
+                    args.Frame.ExecuteJavaScriptAsync(script.JSCode);
             }
         }
 
         public void onAddrChange(object sender, AddressChangedEventArgs args)
         {
-            url.Text = args.Address;
+            if (Regex.IsMatch(args.Address, ".*.user\\.js"))
+            {
+                new InstallNewScript(session, args.Address).ShowDialog();
+                args.Browser.GoBack();
+            }
+            else
+                url.Text = args.Address;
         }
 
         private void BrowserWindow_Load(object sender, EventArgs e)
@@ -79,8 +102,11 @@ namespace SessionIsoBrowser
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.session.Url = url.Text;
-            Data.VDB.PutSessionInfo(this.session);
+            if (!Regex.IsMatch(url.Text, ".*.user\\.js"))
+            {
+                this.session.Url = url.Text;
+                Data.VDB.PutSessionInfo(this.session);
+            }
             webBro.Load(url.Text);
         }
 
@@ -92,6 +118,14 @@ namespace SessionIsoBrowser
         private void browserLayoutPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void url_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                webBro.Load(url.Text);
+            }
         }
     }
 }

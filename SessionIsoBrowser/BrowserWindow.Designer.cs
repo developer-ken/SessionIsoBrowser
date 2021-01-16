@@ -44,6 +44,7 @@ namespace SessionIsoBrowser
             this.url.Name = "url";
             this.url.Size = new System.Drawing.Size(659, 25);
             this.url.TabIndex = 0;
+            this.url.KeyUp += new System.Windows.Forms.KeyEventHandler(this.url_KeyUp);
             // 
             // button1
             // 

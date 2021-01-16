@@ -1,11 +1,13 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace SessionIsoBrowser.Data
 {
     class ScriptFetchEngine
     {
-        public static string GetScriptContent(string Url)
+        public static string GetScriptContent(string Url,SessionInfo session = new SessionInfo())
         {
             try
             {

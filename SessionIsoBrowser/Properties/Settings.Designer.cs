@@ -82,12 +82,12 @@ namespace SessionIsoBrowser.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection Extentions {
+        public global::System.Collections.Specialized.StringCollection UserScripts {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Extentions"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["UserScripts"]));
             }
             set {
-                this["Extentions"] = value;
+                this["UserScripts"] = value;
             }
         }
     }
