@@ -49,6 +49,8 @@ namespace SessionIsoBrowser
             this.打开插件目录ExtentionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.隐藏所有HideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.隐藏所有会话窗口HideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.显示所有隐藏的窗口ShowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContainerItemMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -71,9 +73,11 @@ namespace SessionIsoBrowser
             this.ContainerItemMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ContainerItemMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sToolStripMenuItem,
-            this.全局用户脚本UToolStripMenuItem});
+            this.全局用户脚本UToolStripMenuItem,
+            this.隐藏所有会话窗口HideToolStripMenuItem,
+            this.显示所有隐藏的窗口ShowToolStripMenuItem});
             this.ContainerItemMenu.Name = "ContainerItemMenu";
-            this.ContainerItemMenu.Size = new System.Drawing.Size(211, 80);
+            this.ContainerItemMenu.Size = new System.Drawing.Size(264, 128);
             this.ContainerItemMenu.Opening += new System.ComponentModel.CancelEventHandler(this.ContainerItemMenu_Opening);
             // 
             // sToolStripMenuItem
@@ -84,7 +88,7 @@ namespace SessionIsoBrowser
             this.删除会话DeleteToolStripMenuItem,
             this.脚本ScriptToolStripMenuItem});
             this.sToolStripMenuItem.Name = "sToolStripMenuItem";
-            this.sToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.sToolStripMenuItem.Size = new System.Drawing.Size(263, 24);
             this.sToolStripMenuItem.Text = ">>>>>>>>>(&S)";
             // 
             // 新窗口OToolStripMenuItem
@@ -135,7 +139,7 @@ namespace SessionIsoBrowser
             // 全局用户脚本UToolStripMenuItem
             // 
             this.全局用户脚本UToolStripMenuItem.Name = "全局用户脚本UToolStripMenuItem";
-            this.全局用户脚本UToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.全局用户脚本UToolStripMenuItem.Size = new System.Drawing.Size(263, 24);
             this.全局用户脚本UToolStripMenuItem.Text = "全局脚本(&U)";
             this.全局用户脚本UToolStripMenuItem.Click += new System.EventHandler(this.全局用户脚本UToolStripMenuItem_Click);
             // 
@@ -223,6 +227,20 @@ namespace SessionIsoBrowser
             this.隐藏所有HideToolStripMenuItem.Text = "隐藏所有(&Hide)";
             this.隐藏所有HideToolStripMenuItem.Click += new System.EventHandler(this.隐藏所有HideToolStripMenuItem_Click);
             // 
+            // 隐藏所有会话窗口HideToolStripMenuItem
+            // 
+            this.隐藏所有会话窗口HideToolStripMenuItem.Name = "隐藏所有会话窗口HideToolStripMenuItem";
+            this.隐藏所有会话窗口HideToolStripMenuItem.Size = new System.Drawing.Size(263, 24);
+            this.隐藏所有会话窗口HideToolStripMenuItem.Text = "隐藏所有会话窗口(&Hide)";
+            this.隐藏所有会话窗口HideToolStripMenuItem.Click += new System.EventHandler(this.隐藏所有会话窗口HideToolStripMenuItem_Click);
+            // 
+            // 显示所有隐藏的窗口ShowToolStripMenuItem
+            // 
+            this.显示所有隐藏的窗口ShowToolStripMenuItem.Name = "显示所有隐藏的窗口ShowToolStripMenuItem";
+            this.显示所有隐藏的窗口ShowToolStripMenuItem.Size = new System.Drawing.Size(263, 24);
+            this.显示所有隐藏的窗口ShowToolStripMenuItem.Text = "显示所有隐藏的窗口(&Show)";
+            this.显示所有隐藏的窗口ShowToolStripMenuItem.Click += new System.EventHandler(this.显示所有隐藏的窗口ShowToolStripMenuItem_Click);
+            // 
             // SessionManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -264,6 +282,8 @@ namespace SessionIsoBrowser
         private System.Windows.Forms.ToolStripMenuItem 脚本ScriptToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ToolStripMenuItem 隐藏所有HideToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 隐藏所有会话窗口HideToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 显示所有隐藏的窗口ShowToolStripMenuItem;
     }
 }
 

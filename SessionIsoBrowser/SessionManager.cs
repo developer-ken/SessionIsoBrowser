@@ -66,6 +66,13 @@ namespace SessionIsoBrowser
             BrowserWindow bw = new BrowserWindow(Data.VDB.ReadSessionInfo(Data.VDB.GetSessionSavePath(UUID)));
             openWindows.Add(bw);
             bw.Show();
+            bw.FormClosed += onBrowserWindowClose;
+        }
+
+        private void onBrowserWindowClose(object sender, FormClosedEventArgs e)
+        {
+            BrowserWindow window = (BrowserWindow)sender;
+            openWindows.Remove(window);
         }
 
         private void listOfContainer_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -156,6 +163,25 @@ namespace SessionIsoBrowser
                 {
                     brw.Hide();
                 }
+            }
+        }
+
+        private void 显示所有隐藏的窗口ShowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (BrowserWindow brw in openWindows)
+            {
+                if (brw.Visible == false)
+                {
+                    brw.Show();
+                }
+            }
+        }
+
+        private void 隐藏所有会话窗口HideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (BrowserWindow brw in openWindows)
+            {
+                brw.Hide();
             }
         }
     }
