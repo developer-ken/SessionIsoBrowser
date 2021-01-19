@@ -34,7 +34,7 @@ namespace SessionIsoBrowser.Data
             UserScript script = new UserScript(Code);
             string HASH = GetHashString(script.conf.Name);
             File.WriteAllText(VDB.savepath + @"\userscripts\" + HASH + ".user.js", script.JSCode);
-            Properties.Settings.Default.UserScripts.Add("globalscript://" + HASH + script.conf.Name);
+            Properties.Settings.Default.UserScripts.Add("globalscript://" + HASH + "/" + script.conf.Name);
             return HASH;
         }
 

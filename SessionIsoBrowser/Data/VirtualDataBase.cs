@@ -83,7 +83,13 @@ namespace SessionIsoBrowser.Data
 
         public static void DeleteSession(SessionInfo session)
         {
-            Directory.Delete(session.SessionPath, true);
+            try
+            {
+                Directory.Delete(session.SessionPath, true);
+            }
+            catch{
+                Properties.Settings.Default.FolderToDelete.Add(session.SessionPath);
+            }
             Properties.Settings.Default.SessionList.Remove(session.UUID);
         }
 

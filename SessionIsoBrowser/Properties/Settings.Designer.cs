@@ -90,5 +90,16 @@ namespace SessionIsoBrowser.Properties {
                 this["UserScripts"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection FolderToDelete {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["FolderToDelete"]));
+            }
+            set {
+                this["FolderToDelete"] = value;
+            }
+        }
     }
 }
