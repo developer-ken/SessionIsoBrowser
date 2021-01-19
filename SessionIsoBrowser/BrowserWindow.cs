@@ -39,7 +39,7 @@ namespace SessionIsoBrowser
             sUUID = session.UUID;
             Task t = Task.Run(async () =>
             {
-                List<string> Uscripts = Data.VDB.GetSessionRelatedExtentions(session.UUID);
+                List<string> Uscripts = Data.VDB.GetSessionRelatedScripts(session.UUID);
                 scripts.Clear();
                 int cnt = 0;
                 foreach (string urlstr in Uscripts)

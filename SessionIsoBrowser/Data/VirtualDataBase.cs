@@ -71,7 +71,7 @@ namespace SessionIsoBrowser.Data
             return savepath + @"\" + UUID;
         }
 
-        public static List<string> GetSessionRelatedExtentions(string UUID)
+        public static List<string> GetSessionRelatedScripts(string UUID)
         {
             string[] localExtentions = ReadSessionInfo(GetSessionSavePath(UUID)).Userscripts;
             //将两个集合合并作为结果
