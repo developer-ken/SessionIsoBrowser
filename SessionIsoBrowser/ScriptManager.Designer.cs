@@ -31,8 +31,8 @@ namespace SessionIsoBrowser
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScriptManager));
             this.noticePad = new System.Windows.Forms.Label();
-            this.userScriptBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.userScriptBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // noticePad
@@ -44,17 +44,6 @@ namespace SessionIsoBrowser
             this.noticePad.TabIndex = 0;
             this.noticePad.Text = "* 正在编辑 全局 用户脚本设置";
             // 
-            // userScriptBox
-            // 
-            this.userScriptBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.userScriptBox.Location = new System.Drawing.Point(12, 38);
-            this.userScriptBox.Multiline = true;
-            this.userScriptBox.Name = "userScriptBox";
-            this.userScriptBox.Size = new System.Drawing.Size(776, 400);
-            this.userScriptBox.TabIndex = 1;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(680, 5);
@@ -65,13 +54,24 @@ namespace SessionIsoBrowser
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // userScriptBox
+            // 
+            this.userScriptBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.userScriptBox.Location = new System.Drawing.Point(4, 34);
+            this.userScriptBox.Name = "userScriptBox";
+            this.userScriptBox.Size = new System.Drawing.Size(792, 411);
+            this.userScriptBox.TabIndex = 3;
+            this.userScriptBox.Text = "";
+            // 
             // ScriptManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.userScriptBox);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.noticePad);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ScriptManager";
@@ -85,7 +85,7 @@ namespace SessionIsoBrowser
         #endregion
 
         private System.Windows.Forms.Label noticePad;
-        private System.Windows.Forms.TextBox userScriptBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox userScriptBox;
     }
 }

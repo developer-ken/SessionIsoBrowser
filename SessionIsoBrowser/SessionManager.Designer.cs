@@ -37,10 +37,13 @@ namespace SessionIsoBrowser
             this.新窗口OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.会话下的窗口WindowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.显示所有ShowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.隐藏所有HideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关闭所有CloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除会话DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.脚本ScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.全局用户脚本UToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.隐藏所有会话窗口HideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.显示所有隐藏的窗口ShowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.okbutton = new System.Windows.Forms.Button();
@@ -48,9 +51,7 @@ namespace SessionIsoBrowser
             this.coName = new System.Windows.Forms.TextBox();
             this.打开插件目录ExtentionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.隐藏所有HideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.隐藏所有会话窗口HideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.显示所有隐藏的窗口ShowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.调试模式打开窗口DebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContainerItemMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -86,7 +87,8 @@ namespace SessionIsoBrowser
             this.新窗口OToolStripMenuItem,
             this.会话下的窗口WindowsToolStripMenuItem,
             this.删除会话DeleteToolStripMenuItem,
-            this.脚本ScriptToolStripMenuItem});
+            this.脚本ScriptToolStripMenuItem,
+            this.调试模式打开窗口DebugToolStripMenuItem});
             this.sToolStripMenuItem.Name = "sToolStripMenuItem";
             this.sToolStripMenuItem.Size = new System.Drawing.Size(263, 24);
             this.sToolStripMenuItem.Text = ">>>>>>>>>(&S)";
@@ -94,7 +96,7 @@ namespace SessionIsoBrowser
             // 新窗口OToolStripMenuItem
             // 
             this.新窗口OToolStripMenuItem.Name = "新窗口OToolStripMenuItem";
-            this.新窗口OToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
+            this.新窗口OToolStripMenuItem.Size = new System.Drawing.Size(271, 26);
             this.新窗口OToolStripMenuItem.Text = "新窗口(&Open)";
             this.新窗口OToolStripMenuItem.Click += new System.EventHandler(this.新窗口OToolStripMenuItem_Click);
             // 
@@ -105,34 +107,41 @@ namespace SessionIsoBrowser
             this.隐藏所有HideToolStripMenuItem,
             this.关闭所有CloseToolStripMenuItem});
             this.会话下的窗口WindowsToolStripMenuItem.Name = "会话下的窗口WindowsToolStripMenuItem";
-            this.会话下的窗口WindowsToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
+            this.会话下的窗口WindowsToolStripMenuItem.Size = new System.Drawing.Size(271, 26);
             this.会话下的窗口WindowsToolStripMenuItem.Text = "会话下的窗口(&Windows)";
             // 
             // 显示所有ShowToolStripMenuItem
             // 
             this.显示所有ShowToolStripMenuItem.Name = "显示所有ShowToolStripMenuItem";
-            this.显示所有ShowToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.显示所有ShowToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
             this.显示所有ShowToolStripMenuItem.Text = "显示所有(&Show)";
             this.显示所有ShowToolStripMenuItem.Click += new System.EventHandler(this.显示所有ShowToolStripMenuItem_Click);
+            // 
+            // 隐藏所有HideToolStripMenuItem
+            // 
+            this.隐藏所有HideToolStripMenuItem.Name = "隐藏所有HideToolStripMenuItem";
+            this.隐藏所有HideToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.隐藏所有HideToolStripMenuItem.Text = "隐藏所有(&Hide)";
+            this.隐藏所有HideToolStripMenuItem.Click += new System.EventHandler(this.隐藏所有HideToolStripMenuItem_Click);
             // 
             // 关闭所有CloseToolStripMenuItem
             // 
             this.关闭所有CloseToolStripMenuItem.Name = "关闭所有CloseToolStripMenuItem";
-            this.关闭所有CloseToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.关闭所有CloseToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
             this.关闭所有CloseToolStripMenuItem.Text = "关闭所有(&Close)";
             this.关闭所有CloseToolStripMenuItem.Click += new System.EventHandler(this.关闭所有CloseToolStripMenuItem_Click);
             // 
             // 删除会话DeleteToolStripMenuItem
             // 
             this.删除会话DeleteToolStripMenuItem.Name = "删除会话DeleteToolStripMenuItem";
-            this.删除会话DeleteToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
+            this.删除会话DeleteToolStripMenuItem.Size = new System.Drawing.Size(271, 26);
             this.删除会话DeleteToolStripMenuItem.Text = "删除会话(&Delete)";
             this.删除会话DeleteToolStripMenuItem.Click += new System.EventHandler(this.删除会话DeleteToolStripMenuItem_Click);
             // 
             // 脚本ScriptToolStripMenuItem
             // 
             this.脚本ScriptToolStripMenuItem.Name = "脚本ScriptToolStripMenuItem";
-            this.脚本ScriptToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
+            this.脚本ScriptToolStripMenuItem.Size = new System.Drawing.Size(271, 26);
             this.脚本ScriptToolStripMenuItem.Text = "脚本(&Script)";
             this.脚本ScriptToolStripMenuItem.Click += new System.EventHandler(this.用户脚本UserScriptToolStripMenuItem_Click);
             // 
@@ -142,6 +151,20 @@ namespace SessionIsoBrowser
             this.全局用户脚本UToolStripMenuItem.Size = new System.Drawing.Size(263, 24);
             this.全局用户脚本UToolStripMenuItem.Text = "全局脚本(&U)";
             this.全局用户脚本UToolStripMenuItem.Click += new System.EventHandler(this.全局用户脚本UToolStripMenuItem_Click);
+            // 
+            // 隐藏所有会话窗口HideToolStripMenuItem
+            // 
+            this.隐藏所有会话窗口HideToolStripMenuItem.Name = "隐藏所有会话窗口HideToolStripMenuItem";
+            this.隐藏所有会话窗口HideToolStripMenuItem.Size = new System.Drawing.Size(263, 24);
+            this.隐藏所有会话窗口HideToolStripMenuItem.Text = "隐藏所有会话窗口(&Hide)";
+            this.隐藏所有会话窗口HideToolStripMenuItem.Click += new System.EventHandler(this.隐藏所有会话窗口HideToolStripMenuItem_Click);
+            // 
+            // 显示所有隐藏的窗口ShowToolStripMenuItem
+            // 
+            this.显示所有隐藏的窗口ShowToolStripMenuItem.Name = "显示所有隐藏的窗口ShowToolStripMenuItem";
+            this.显示所有隐藏的窗口ShowToolStripMenuItem.Size = new System.Drawing.Size(263, 24);
+            this.显示所有隐藏的窗口ShowToolStripMenuItem.Text = "显示所有隐藏的窗口(&Show)";
+            this.显示所有隐藏的窗口ShowToolStripMenuItem.Click += new System.EventHandler(this.显示所有隐藏的窗口ShowToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -220,26 +243,12 @@ namespace SessionIsoBrowser
             this.textBox1.Text = "安全警示：脚本与Userscript(例如油猴加载的脚本)不完全相同，需要兼容层来运行。兼容层未实现安全模型，可能被恶意页面利用来提权。请仅使用可信的脚本、仅访问" +
     "可信的页面。";
             // 
-            // 隐藏所有HideToolStripMenuItem
+            // 调试模式打开窗口DebugToolStripMenuItem
             // 
-            this.隐藏所有HideToolStripMenuItem.Name = "隐藏所有HideToolStripMenuItem";
-            this.隐藏所有HideToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.隐藏所有HideToolStripMenuItem.Text = "隐藏所有(&Hide)";
-            this.隐藏所有HideToolStripMenuItem.Click += new System.EventHandler(this.隐藏所有HideToolStripMenuItem_Click);
-            // 
-            // 隐藏所有会话窗口HideToolStripMenuItem
-            // 
-            this.隐藏所有会话窗口HideToolStripMenuItem.Name = "隐藏所有会话窗口HideToolStripMenuItem";
-            this.隐藏所有会话窗口HideToolStripMenuItem.Size = new System.Drawing.Size(263, 24);
-            this.隐藏所有会话窗口HideToolStripMenuItem.Text = "隐藏所有会话窗口(&Hide)";
-            this.隐藏所有会话窗口HideToolStripMenuItem.Click += new System.EventHandler(this.隐藏所有会话窗口HideToolStripMenuItem_Click);
-            // 
-            // 显示所有隐藏的窗口ShowToolStripMenuItem
-            // 
-            this.显示所有隐藏的窗口ShowToolStripMenuItem.Name = "显示所有隐藏的窗口ShowToolStripMenuItem";
-            this.显示所有隐藏的窗口ShowToolStripMenuItem.Size = new System.Drawing.Size(263, 24);
-            this.显示所有隐藏的窗口ShowToolStripMenuItem.Text = "显示所有隐藏的窗口(&Show)";
-            this.显示所有隐藏的窗口ShowToolStripMenuItem.Click += new System.EventHandler(this.显示所有隐藏的窗口ShowToolStripMenuItem_Click);
+            this.调试模式打开窗口DebugToolStripMenuItem.Name = "调试模式打开窗口DebugToolStripMenuItem";
+            this.调试模式打开窗口DebugToolStripMenuItem.Size = new System.Drawing.Size(271, 26);
+            this.调试模式打开窗口DebugToolStripMenuItem.Text = "调试模式打开窗口(&Debug)";
+            this.调试模式打开窗口DebugToolStripMenuItem.Click += new System.EventHandler(this.调试模式打开窗口DebugToolStripMenuItem_Click);
             // 
             // SessionManager
             // 
@@ -284,6 +293,7 @@ namespace SessionIsoBrowser
         private System.Windows.Forms.ToolStripMenuItem 隐藏所有HideToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 隐藏所有会话窗口HideToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 显示所有隐藏的窗口ShowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 调试模式打开窗口DebugToolStripMenuItem;
     }
 }
 

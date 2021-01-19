@@ -126,6 +126,7 @@
     <Compile Include="Data\ScriptFetchEngine.cs" />
     <Compile Include="Data\UserScript.cs" />
     <Compile Include="Data\VirtualDataBase.cs" />
+    <Compile Include="GMApi\StorageSystem.cs" />
     <Compile Include="Handler\ExtensionHandler.cs" />
     <Compile Include="GMApi\GM_API_Handler.cs" />
     <Compile Include="InstallNewScript.cs">

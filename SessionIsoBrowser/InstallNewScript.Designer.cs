@@ -31,30 +31,22 @@ namespace SessionIsoBrowser
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstallNewScript));
             this.label1 = new System.Windows.Forms.Label();
-            this.code = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.selecttarget = new System.Windows.Forms.ComboBox();
+            this.code = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 408);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "安装到哪里？";
-            // 
-            // code
-            // 
-            this.code.Location = new System.Drawing.Point(12, 27);
-            this.code.Multiline = true;
-            this.code.Name = "code";
-            this.code.Size = new System.Drawing.Size(773, 362);
-            this.code.TabIndex = 2;
-            this.code.Text = "Code Here";
             // 
             // label2
             // 
@@ -69,6 +61,7 @@ namespace SessionIsoBrowser
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Location = new System.Drawing.Point(531, 395);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 34);
@@ -79,6 +72,7 @@ namespace SessionIsoBrowser
             // 
             // button2
             // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Location = new System.Drawing.Point(667, 395);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(118, 34);
@@ -89,22 +83,35 @@ namespace SessionIsoBrowser
             // 
             // selecttarget
             // 
+            this.selecttarget.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.selecttarget.FormattingEnabled = true;
             this.selecttarget.Location = new System.Drawing.Point(115, 402);
             this.selecttarget.Name = "selecttarget";
-            this.selecttarget.Size = new System.Drawing.Size(121, 23);
+            this.selecttarget.Size = new System.Drawing.Size(189, 23);
             this.selecttarget.TabIndex = 6;
+            // 
+            // code
+            // 
+            this.code.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.code.Location = new System.Drawing.Point(4, 27);
+            this.code.Name = "code";
+            this.code.Size = new System.Drawing.Size(791, 362);
+            this.code.TabIndex = 7;
+            this.code.Text = "";
             // 
             // InstallNewScript
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 440);
+            this.Controls.Add(this.code);
             this.Controls.Add(this.selecttarget);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.code);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "InstallNewScript";
@@ -119,10 +126,10 @@ namespace SessionIsoBrowser
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox code;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox selecttarget;
+        private System.Windows.Forms.RichTextBox code;
     }
 }

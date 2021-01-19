@@ -101,5 +101,23 @@ namespace SessionIsoBrowser.Properties {
                 this["FolderToDelete"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"function GM_addStyle(css) { 
+    var head, style; 
+    head = document.getElementsByTagName('head')[0]; 
+    if (!head) { return; } 
+    style = document.createElement('style'); 
+    style.type = 'text/css'; 
+    style.innerHTML = css; 
+    head.appendChild(style);
+    return style;
+}")]
+        public string EnvScript {
+            get {
+                return ((string)(this["EnvScript"]));
+            }
+        }
     }
 }

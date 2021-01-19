@@ -70,6 +70,8 @@ namespace SessionIsoBrowser
             bw.FormClosed += onBrowserWindowClose;
         }
 
+
+
         private void onBrowserWindowClose(object sender, FormClosedEventArgs e)
         {
             BrowserWindow window = (BrowserWindow)sender;
@@ -90,7 +92,7 @@ namespace SessionIsoBrowser
         {
             foreach (BrowserWindow brw in openWindows)
             {
-                if (brw.UUID == listOfContainer.SelectedItems[0].Name)
+                if (brw.sUUID == listOfContainer.SelectedItems[0].Name)
                 {
                     brw.Show();
                     brw.Focus();
@@ -107,7 +109,7 @@ namespace SessionIsoBrowser
         {
             foreach (BrowserWindow brw in openWindows)
             {
-                if (brw.UUID == UUID)
+                if (brw.sUUID == UUID)
                 {
                     brw.Close();
                 }
@@ -116,7 +118,7 @@ namespace SessionIsoBrowser
 
         private void ContainerItemMenu_Opening(object sender, CancelEventArgs e)
         {
-
+            sToolStripMenuItem.Enabled = listOfContainer.SelectedItems.Count == 1;
         }
 
         private void 全局用户脚本UToolStripMenuItem_Click(object sender, EventArgs e)
@@ -160,7 +162,7 @@ namespace SessionIsoBrowser
         {
             foreach (BrowserWindow brw in openWindows)
             {
-                if (brw.UUID == listOfContainer.SelectedItems[0].Name)
+                if (brw.sUUID == listOfContainer.SelectedItems[0].Name)
                 {
                     brw.Hide();
                 }
@@ -184,6 +186,14 @@ namespace SessionIsoBrowser
             {
                 brw.Hide();
             }
+        }
+
+        private void 调试模式打开窗口DebugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BrowserWindow bw = new BrowserWindow(Data.VDB.ReadSessionInfo(Data.VDB.GetSessionSavePath(listOfContainer.SelectedItems[0].Name)), true);
+            openWindows.Add(bw);
+            bw.Show();
+            bw.FormClosed += onBrowserWindowClose;
         }
     }
 }

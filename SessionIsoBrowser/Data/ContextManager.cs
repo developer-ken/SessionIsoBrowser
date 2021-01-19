@@ -8,7 +8,6 @@ namespace SessionIsoBrowser.Data
     {
         public struct Context
         {
-            public GM_API_Handler GM;
             public RequestContext context;
         }
         private static Dictionary<string, Context> contList = new Dictionary<string, Context>();
@@ -24,7 +23,7 @@ namespace SessionIsoBrowser.Data
                 RequestContext reqc = new RequestContext(settings);
                 reqc.LoadExtensionsFromDirectory(VDB.savepath + @"\extentions", extHandler);
                 //Cef.RefreshWebPlugins();
-                Context c = new Context() { context = reqc, GM = new GM_API_Handler() };
+                Context c = new Context() { context = reqc};
                 contList.Add(UUID, c);
                 return c;
             }

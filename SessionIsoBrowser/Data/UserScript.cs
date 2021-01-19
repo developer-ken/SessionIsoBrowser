@@ -17,6 +17,7 @@ namespace SessionIsoBrowser.Data
         {
             public string Name, Version, NameSpace, Description, Author, License;
             public string[] Match, Grant;
+            public Dictionary<string, string> Resources;
             public List<KeyValuePair<string, string>> UnidentifiedArgs;
         }
 
@@ -25,7 +26,7 @@ namespace SessionIsoBrowser.Data
             JSCode = code;
             conf = GetUserScriptConfig();
             List<Regex> ss = new List<Regex>();
-            foreach(string regex in conf.Match)
+            foreach (string regex in conf.Match)
             {
                 ss.Add(new Regex(regex.Replace(".", "\\.").Replace("*", ".*")));
             }
@@ -34,7 +35,7 @@ namespace SessionIsoBrowser.Data
 
         public string GetUserScriptConfigStr()
         {
-            Regex reg = new Regex("==UserScript==.*==/UserScript==",RegexOptions.Singleline);
+            Regex reg = new Regex("==UserScript==.*==/UserScript==", RegexOptions.Singleline);
             return reg.Match(JSCode).Value;
         }
 
@@ -44,6 +45,7 @@ namespace SessionIsoBrowser.Data
             string[] lines = GetUserScriptConfigStr().Split('\n');
             List<string> match = new List<string>();
             List<string> grant = new List<string>();
+            Dictionary<string, string> resources = new Dictionary<string, string>();
             UserScriptConfig res = new UserScriptConfig();
             res.UnidentifiedArgs = new List<KeyValuePair<string, string>>();
             foreach (string line in lines)
@@ -75,6 +77,10 @@ namespace SessionIsoBrowser.Data
                     case "@license":
                         res.License = value;
                         break;
+                    case "@resource":
+                        var recaps = Regex.Match(value, "(\\w{1,}) {1,}(.{1,}/.{1,})").Groups;
+                        resources.Add(recaps[1].Value, recaps.Count == 3 ? recaps[2].Value : "");
+                        break;
                     default:
                         res.UnidentifiedArgs.Add(new KeyValuePair<string, string>(cmd, value));
                         break;
@@ -82,6 +88,7 @@ namespace SessionIsoBrowser.Data
             }
             res.Match = match.ToArray();
             res.Grant = grant.ToArray();
+            res.Resources = resources;
             return res;
         }
 
