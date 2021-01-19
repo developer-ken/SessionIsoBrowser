@@ -107,7 +107,8 @@ namespace SessionIsoBrowser
 
         private void CloseAllWindow(string UUID)
         {
-            foreach (BrowserWindow brw in openWindows)
+            BrowserWindow[] bws = openWindows.ToArray();
+            foreach (BrowserWindow brw in bws)
             {
                 if (brw.sUUID == UUID)
                 {
