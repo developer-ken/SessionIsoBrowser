@@ -43,3 +43,4 @@
 #### **要怎么用呢？**
 
 这个...说来话长...
+详细说明请查看[油猴中文网上的帖子](https://bbs.tampermonkey.net.cn/forum.php?mod=viewthread&tid=223&page=1)
