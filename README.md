@@ -2,8 +2,12 @@
 
 # **多会话隔离浏览器 SessionIsoBrowser**
 
-一款可以在同一网站不同窗口同时登录多个不同账号的浏览器
+一款可以在同一网站不同窗口同时登录多个不同账号的浏览器  
+
+---
+
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b3fbc4fbe81248408ec25011c681279e)](https://www.codacy.com/gh/developer-ken/SessionIsoBrowser/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=developer-ken/SessionIsoBrowser&amp;utm_campaign=Badge_Grade)
+
 ---
 
 #### ***有什么意义？***
