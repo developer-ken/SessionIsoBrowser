@@ -11,6 +11,7 @@ namespace SessionIsoBrowser
     public partial class SessionManager : Form
     {
         private List<BrowserWindow> openWindows = new List<BrowserWindow>();
+
         public SessionManager()
         {
             InitializeComponent();
@@ -195,6 +196,11 @@ namespace SessionIsoBrowser
             openWindows.Add(bw);
             bw.Show();
             bw.FormClosed += onBrowserWindowClose;
+        }
+
+        private void 更新UpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new UpdateChecker("https://storage.microstorm.tech/sib_repo/update.json", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version).ShowDialog();
         }
     }
 }

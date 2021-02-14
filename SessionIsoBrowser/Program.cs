@@ -1,6 +1,7 @@
 ﻿using CefSharp;
 using SessionIsoBrowser.Data;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -12,8 +13,13 @@ namespace SessionIsoBrowser
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            if(new List<string>(args).Contains("--update-done"))
+            {
+                File.Delete("update.zip");
+                MessageBox.Show("更新补丁已经成功安装。", "更新安装模块", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             if (!File.Exists("cef.pak"))
             {
                 MessageBox.Show("浏览器渲染引擎未安装。请将RenderEngine复制到当前文件夹，然后重新启动本程序。", "无法启动引擎", MessageBoxButtons.OK, MessageBoxIcon.Error);
