@@ -143,6 +143,16 @@ namespace SessionIsoBrowser.GMApi
             }
         }
 
+        private Dictionary<string, string> ObjDic2StrDic(Dictionary<string, object> strdic)
+        {
+            Dictionary<string, string> res = new Dictionary<string, string>();
+            foreach (var kvp in strdic)
+            {
+                res.Add(kvp.Key, (string)kvp.Value);
+            }
+            return res;
+        }
+
         public void xmlhttpRequest(Dictionary<string, object> variables)
         {
             if (!variables.ContainsKey("url")) throw new Exception("参数不全，撤退！");
@@ -151,13 +161,13 @@ namespace SessionIsoBrowser.GMApi
             CefSharp.IJavascriptCallback onTimeout = null;
             foreach (KeyValuePair<string, object> kvp in variables)
             {
-                switch (kvp.Key)
+                switch (kvp.Key.ToLower())
                 {
                     case "method":
                         request.Method = kvp.Value.ToString();
                         break;
                     case "headers":
-                        Dictionary<string, string> headers = (Dictionary<string, string>)kvp.Value;
+                        Dictionary<string, string> headers = ObjDic2StrDic((Dictionary<string, object>)kvp.Value);
                         foreach (KeyValuePair<string, string> item in headers)
                         {
                             switch (item.Key.ToLower())
@@ -187,10 +197,10 @@ namespace SessionIsoBrowser.GMApi
                     case "timeout":
                         request.Timeout = (int)kvp.Value;
                         break;
-                    case "onLoad":
+                    case "onload":
                         onLoad = (CefSharp.IJavascriptCallback)kvp.Value;
                         break;
-                    case "onTimeout":
+                    case "ontimeout":
                         onTimeout = (CefSharp.IJavascriptCallback)kvp.Value;
                         break;
                     case "data":
@@ -213,10 +223,15 @@ namespace SessionIsoBrowser.GMApi
                     status = (int)resp.StatusCode,
                     responseText = result
                 };
-                if (onLoad != null) onLoad.ExecuteAsync(res);
+                onLoad?.ExecuteAsync(res);
             }
             catch (WebException ex)
             {
+                if (ex.Message.IndexOf("超时") > 0)
+                {
+                    onTimeout?.ExecuteAsync();
+                    return;
+                }
                 HttpWebResponse resp = (HttpWebResponse)ex.Response;
                 XHRResult res = new XHRResult()
                 {
@@ -226,11 +241,11 @@ namespace SessionIsoBrowser.GMApi
                 if (resp.StatusCode == HttpStatusCode.RequestTimeout ||
                     resp.StatusCode == HttpStatusCode.GatewayTimeout)
                 {
-                    if (onTimeout != null) onTimeout.ExecuteAsync();
+                    onTimeout?.ExecuteAsync();
                 }
                 else
                 {
-                    if (onLoad != null) onLoad.ExecuteAsync(res);
+                    onLoad?.ExecuteAsync(res);
                 }
             }
         }
