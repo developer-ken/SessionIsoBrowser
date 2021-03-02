@@ -22,6 +22,7 @@ namespace UpdateInstaller
             {
                 Console.WriteLine("无法结束SIB进程：" + err.Message);
             }
+            Thread.Sleep(1000);
             if (!File.Exists("update.zip"))
             {
                 Console.WriteLine("更新失败：找不到更新包");

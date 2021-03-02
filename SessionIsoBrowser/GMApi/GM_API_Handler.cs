@@ -159,6 +159,7 @@ namespace SessionIsoBrowser.GMApi
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(variables["url"].ToString());
             CefSharp.IJavascriptCallback onLoad = null;
             CefSharp.IJavascriptCallback onTimeout = null;
+            bool isAsync = false;
             foreach (KeyValuePair<string, object> kvp in variables)
             {
                 switch (kvp.Key.ToLower())
@@ -206,48 +207,56 @@ namespace SessionIsoBrowser.GMApi
                     case "data":
                         WriteRequestStream(request, kvp.Value.ToString());
                         break;
+                    case "async":
+                        isAsync = (bool)kvp.Value;
+                        break;
                 }
             }
-            try
+            var workingthread = new Thread(new ThreadStart(() =>
             {
-                HttpWebResponse resp = (HttpWebResponse)request.GetResponse();
-                Stream stream = resp.GetResponseStream();
-                string result;
-                //获取响应内容
-                using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+                try
                 {
-                    result = reader.ReadToEnd();
-                }
-                XHRResult res = new XHRResult()
-                {
-                    status = (int)resp.StatusCode,
-                    responseText = result
-                };
-                onLoad?.ExecuteAsync(res);
-            }
-            catch (WebException ex)
-            {
-                if (ex.Message.IndexOf("超时") > 0)
-                {
-                    onTimeout?.ExecuteAsync();
-                    return;
-                }
-                HttpWebResponse resp = (HttpWebResponse)ex.Response;
-                XHRResult res = new XHRResult()
-                {
-                    status = (int)resp.StatusCode,
-                    responseText = ""
-                };
-                if (resp.StatusCode == HttpStatusCode.RequestTimeout ||
-                    resp.StatusCode == HttpStatusCode.GatewayTimeout)
-                {
-                    onTimeout?.ExecuteAsync();
-                }
-                else
-                {
+                    HttpWebResponse resp = (HttpWebResponse)request.GetResponse();
+                    Stream stream = resp.GetResponseStream();
+                    string result;
+                    //获取响应内容
+                    using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+                    {
+                        result = reader.ReadToEnd();
+                    }
+                    XHRResult res = new XHRResult()
+                    {
+                        status = (int)resp.StatusCode,
+                        responseText = result
+                    };
                     onLoad?.ExecuteAsync(res);
                 }
-            }
+                catch (WebException ex)
+                {
+                    if (ex.Message.IndexOf("超时") > 0)
+                    {
+                        onTimeout?.ExecuteAsync();
+                        return;
+                    }
+                    HttpWebResponse resp = (HttpWebResponse)ex.Response;
+                    XHRResult res = new XHRResult()
+                    {
+                        status = (int)resp.StatusCode,
+                        responseText = ""
+                    };
+                    if (resp.StatusCode == HttpStatusCode.RequestTimeout ||
+                        resp.StatusCode == HttpStatusCode.GatewayTimeout)
+                    {
+                        onTimeout?.ExecuteAsync();
+                    }
+                    else
+                    {
+                        onLoad?.ExecuteAsync(res);
+                    }
+                }
+            }));
+            workingthread.Start();
+            while ((!isAsync) && workingthread.ThreadState == ThreadState.Running) Thread.Sleep(0);//非异步且在运行，则阻塞当前方法
         }
     }
 }

@@ -19,6 +19,11 @@ namespace SessionIsoBrowser
             {
                 File.Delete("update.zip");
                 MessageBox.Show("更新补丁已经成功安装。", "更新安装模块", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    File.Delete("UpdateInstaller_tmp.exe");
+                }
+                catch { }
             }
             if (!File.Exists("cef.pak"))
             {

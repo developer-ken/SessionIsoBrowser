@@ -159,7 +159,11 @@ namespace SessionIsoBrowser
                             richTextBox1.Text += "Warning: 远程服务器关闭CRC32校验，可能存在安全隐患\n";
                         }
                         //继续更新
-                        Process.Start("UpdateInstaller.exe", Process.GetCurrentProcess().Id.ToString());
+                        {
+                            if (File.Exists("UpdateInstaller_tmp.exe")) File.Delete("UpdateInstaller_tmp.exe");
+                            File.Copy("UpdateInstaller.exe", "UpdateInstaller_tmp.exe");
+                            Process.Start("UpdateInstaller_tmp.exe", Process.GetCurrentProcess().Id.ToString());
+                        }//新机制，支持动态更新更新安装程序
                         richTextBox1.Text += "等待更新安装程序接管...\n";
                     }
                     else
