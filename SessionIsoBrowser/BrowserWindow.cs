@@ -128,13 +128,13 @@ namespace SessionIsoBrowser
                 "GM_removeValueChangeListener = GM.removeValueChangeListener;" +
                 "GM_log = GM.log;" +
                 "GM_getResourceText = GM.getResourceText;" +
-                "GM_getResourceURL = GM.getResourceURL;" +
-                "unsafeWindow = window;");
+                "GM_getResourceURL = GM.getResourceURL;");
             args.Frame.ExecuteJavaScriptAsync(Properties.Settings.Default.EnvScript);
             foreach (UserScript script in scripts)
             {
+                string rnd = new Random().Next(1000,9999).ToString();
                 if (script.IsAvailableInPage(args.Url))
-                    args.Frame.ExecuteJavaScriptAsync(script.JSCode);
+                    args.Frame.ExecuteJavaScriptAsync("function SIB_SCRIPT_LOADER_"+ rnd + "(unsafeWindow){"+script.JSCode+ "}SIB_SCRIPT_LOADER_" + rnd + "(window);");
             }
         }
 
