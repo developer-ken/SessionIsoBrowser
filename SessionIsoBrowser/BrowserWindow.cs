@@ -13,6 +13,7 @@ namespace SessionIsoBrowser
     {
         public string sUUID;
         GMApi.GM_API_Handler GM;
+        GMApi.GMInfo GMInfo;
         ChromiumWebBrowser webBro;
         Data.SessionInfo session;
         List<UserScript> scripts = new List<UserScript>();
@@ -20,6 +21,7 @@ namespace SessionIsoBrowser
         public BrowserWindow(Data.SessionInfo session, bool keepDebugWindow = false)
         {
             GM = new GMApi.GM_API_Handler(session.UUID, this);
+            GMInfo = new GMApi.GMInfo();
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
             this.Text = session.SessionName + " - " + Properties.Settings.Default.Title;
@@ -34,6 +36,7 @@ namespace SessionIsoBrowser
             webBro.AddressChanged += onAddrChange;
             webBro.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
             webBro.JavascriptObjectRepository.Register("GM", GM, false);
+            webBro.JavascriptObjectRepository.Register("GM_Info_Native", GMInfo, false);
 
             this.session = session;
             sUUID = session.UUID;
@@ -128,13 +131,14 @@ namespace SessionIsoBrowser
                 "GM_removeValueChangeListener = GM.removeValueChangeListener;" +
                 "GM_log = GM.log;" +
                 "GM_getResourceText = GM.getResourceText;" +
-                "GM_getResourceURL = GM.getResourceURL;");
+                "GM_getResourceURL = GM.getResourceURL;" +
+                "GM_info = GM_Info_Native;");
             args.Frame.ExecuteJavaScriptAsync(Properties.Settings.Default.EnvScript);
             foreach (UserScript script in scripts)
             {
-                string rnd = new Random().Next(1000,9999).ToString();
+                string rnd = new Random().Next(1000, 9999).ToString();
                 if (script.IsAvailableInPage(args.Url))
-                    args.Frame.ExecuteJavaScriptAsync("function SIB_SCRIPT_LOADER_"+ rnd + "(unsafeWindow){"+script.JSCode+ "}SIB_SCRIPT_LOADER_" + rnd + "(window);");
+                    args.Frame.ExecuteJavaScriptAsync("function SIB_SCRIPT_LOADER_" + rnd + "(unsafeWindow){" + script.JSCode + "}SIB_SCRIPT_LOADER_" + rnd + "(window);");
             }
         }
 

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace SessionIsoBrowser.Data
 {
@@ -15,7 +16,7 @@ namespace SessionIsoBrowser.Data
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
                 request.Method = "GET";
-
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36 Edg/101.0.1210.53 SIB";
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream myResponseStream = response.GetResponseStream();
                 StreamReader streamReader = new StreamReader(myResponseStream);
@@ -24,11 +25,10 @@ namespace SessionIsoBrowser.Data
                 myResponseStream.Close();
                 return retString;
             }
-            catch
+            catch(Exception err)
             {
-                return "";
+                return "资源不可用：\n"+err.Message;
             }
         }
-
     }
 }

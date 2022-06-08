@@ -259,4 +259,9 @@ namespace SessionIsoBrowser.GMApi
             while ((!isAsync) && workingthread.ThreadState == ThreadState.Running) Thread.Sleep(0);//非异步且在运行，则阻塞当前方法
         }
     }
+
+    public class GMInfo
+    {
+        public string scriptHandler = "SIB Script Injector";
+    }
 }
